@@ -127,7 +127,10 @@ async def send_or_edit_help_page(_, message, page_number):
     keyboard = InlineKeyboardMarkup([buttons])
  
      
+    try:
     await message.delete()
+except Exception:
+    pass
  
      
     await message.reply(
