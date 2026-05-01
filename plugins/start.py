@@ -11,10 +11,10 @@ from config import LOG_GROUP, OWNER_ID, FORCE_SUB
 async def subscribe(app, message):
     if FORCE_SUB:
         try:
-          user = await app.get_chat_member(FORCE_SUB, message.from_user.id)
-          if str(user.status) == "ChatMemberStatus.BANNED":
-              await message.reply_text("You are Banned. Contact -- Team SPY")
-              return 1
+            user = await app.get_chat_member(FORCE_SUB, message.from_user.id)
+            if str(user.status) == "ChatMemberStatus.BANNED":
+                await message.reply_text("You are Banned. Contact -- Team SPY")
+                return 1
         except UserNotParticipant:
             link = await app.export_chat_invite_link(FORCE_SUB)
             caption = f"Join our channel to use the bot"
@@ -56,7 +56,7 @@ async def set(_, message):
  
  
  
-help_pages = [
+help_pages =[
     (
         "📝 **Bot Commands Overview (1/2)**:\n\n"
         "1. **/add userID**\n"
@@ -117,7 +117,7 @@ async def send_or_edit_help_page(_, message, page_number):
     next_button = InlineKeyboardButton("Next ▶️", callback_data=f"help_next_{page_number}")
  
      
-    buttons = []
+    buttons =[]
     if page_number > 0:
         buttons.append(prev_button)
     if page_number < len(help_pages) - 1:
@@ -128,9 +128,9 @@ async def send_or_edit_help_page(_, message, page_number):
  
      
     try:
-    await message.delete()
-except Exception:
-    pass
+        await message.delete()
+    except Exception:
+        pass
  
      
     await message.reply(
@@ -172,9 +172,7 @@ async def terms(client, message):
     )
      
     buttons = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("📋 See Plans", callback_data="see_plan")],
-            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
+        [[InlineKeyboardButton("📋 See Plans", callback_data="see_plan")],[InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
         ]
     )
     await message.reply_text(terms_text, reply_markup=buttons)
@@ -191,9 +189,7 @@ async def plan(client, message):
     )
      
     buttons = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
-            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
+        [[InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],[InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
         ]
     )
     await message.reply_text(plan_text, reply_markup=buttons)
@@ -209,10 +205,8 @@ async def see_plan(client, callback_query):
         "📜 **Terms and Conditions**: For further details and complete terms and conditions, please send /terms or click See Terms👇\n"
     )
      
-    buttons = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],
-            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
+    buttons = InlineKeyboardMarkup([
+            [InlineKeyboardButton("📜 See Terms", callback_data="see_terms")],[InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
         ]
     )
     await callback_query.message.edit_text(plan_text, reply_markup=buttons)
@@ -227,12 +221,8 @@ async def see_terms(client, callback_query):
         "✨ Payment to us **__does not guarantee__** authorization for the /batch command. All decisions regarding authorization are made at our discretion and mood.\n"
     )
      
-    buttons = InlineKeyboardMarkup(
-        [
-            [InlineKeyboardButton("📋 See Plans", callback_data="see_plan")],
-            [InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
+    buttons = InlineKeyboardMarkup([
+            [InlineKeyboardButton("📋 See Plans", callback_data="see_plan")],[InlineKeyboardButton("💬 Contact Now", url="https://t.me/kingofpatal")],
         ]
     )
     await callback_query.message.edit_text(terms_text, reply_markup=buttons)
- 
- 
